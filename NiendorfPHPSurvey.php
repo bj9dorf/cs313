@@ -28,13 +28,21 @@
 		}
 		echo "</div>";
 	}
-
-	if file_exists("resultsFile.txt")
+ 
+	if (file_exists("resultsFile.txt"))
 	{
-		
+		echo "hello return user<br>";
+		$text = file_get_contents("resultsFile.txt");
+		echo $text;
 	}
 	else
 	{
-		$resultsFile = fopen("results.txt", "w") or die("Unable to open the file");
+		$i = 0;
+		foreach ($_POST as $item) 
+		{
+			$text[$i] = $item . "<br>";
+			$i++;
+		}
+		file_put_contents("resultsFile.txt", $text);
  	}
  ?>

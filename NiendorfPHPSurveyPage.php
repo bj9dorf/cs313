@@ -91,4 +91,4 @@ else
 {
 	echo "Survey has been taken!";
 }
-$_SESSION["visited"] = "true";
+$_SESSION["visited"] = "false";//"true";
