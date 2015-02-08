@@ -24,36 +24,32 @@
 	
 	try 
 	{
-//		$query = ""; //These commented out parts are in place for future searching
+		$query = $_POST['user']; //These commented out parts are in place for future searching
 
  		$user = "bruce";
 		$pass = "brucepass";
 
 		$db = new PDO ("mysql:host=127.0.0.1;dbname=shoppingList",	$user, $pass);
-		
-/*		$sql = "SELECT name FROM user WHERE name=:name";
-
-		$statment = $db->prepare($sql);
-		$statment->bindValue(':name', $query, PDO::PARAM_STR);
-		$statement->execute();
-*/
-		$sql = "SELECT userId FROM user WHERE username=\'" . $_POST['user']. "\'";
-		$stmt = $db->query($sql);
-
-		$id = $stmt->fetch(PDO::FETCH_NUM);
+		$sql = "SELECT userId FROM user WHERE username=:name";
+		$stmt = $db->prepare($sql);
+		$stmt->bindValue(':name', $query, PDO::PARAM_STR);
+		$stmt->execute();
 
 		echo "<br>";
-		foreach ($db->query("SELECT listname FROM list WHERE userId=\"" . $stmt->fetch(PDO::FETCH_NUM) . "\"") as $row)
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 		{
-	   		echo "List name: " . $row['listname'];
-			echo "<br />";
+			foreach ($db->query("SELECT listname, listId FROM list WHERE userId=\"" . $row["userId"] . "\"") as $row2)
+			{
+	   			echo "List name: " . $row2['listname'];
+				echo "<br />";
+				foreach ($db->query("SELECT itemname FROM item WHERE listId=\"" . $row2["listId"] . "\"") as $row3)
+				{
+	   				echo " -- Item: " . $row3['itemname'];
+					echo "<br />";
+				}
+			}
 		}
 
-/*		while ($row = $statement->fetch(PDO::FETCH_ASSOC))
-		{
-			echo "Found: " . $row["name"] . "<br />\n";
-		}
-*/
 	} 
 	catch (PDOException $e) 
 	{
