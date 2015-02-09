@@ -26,10 +26,29 @@
 	{
 		$query = $_POST['user']; 
 
- 		$user = "bruce";
-		$pass = "brucepass";
+			$openShiftVar = getenv('OPENSHIFT_MYSQL_DB_HOST');
+			$dbName = "shoppingList";
+			if ($openShiftVar === null || $openShiftVar == "")
+			{
+			     echo "Not in the openshift environment";
+			    $dbHost = "127.11.29.130";
+//   				$dbPort = "";
+     			$dbUser = "bruce"; //trying to get openshift to work
+				$dbPassword = "brucepass";
+				
+			     // …
+			}
+			else 
+			{
+		    	echo "In the openshift environment";
+			    $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
+//				$dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
+				$dbUser = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
+				$dbPassword = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+			}
 
-		$db = new PDO ("mysql:host=127.11.29.130;dbname=shoppingList",	$user, $pass);
+			$db = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
+		
 		$sql = "SELECT userId FROM user WHERE username=:name";
 		$stmt = $db->prepare($sql);
 		$stmt->bindValue(':name', $query, PDO::PARAM_STR);
@@ -42,14 +61,11 @@
 			{
 	   			echo "List name: " . $row2['listname'];
 				echo "<br />";
-				echo '<br>item list is next<br>'
 				foreach ($db->query("SELECT itemname FROM item WHERE listId=\"" . $row2["listId"] . "\"") as $row3)
 				{
 	   				echo " -- Item: " . $row3['itemname'];
 					echo "<br />";
 				}
-								echo '<br>item list is done<br>'
-
 			}
 		}
 

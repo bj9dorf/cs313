@@ -15,7 +15,7 @@
 			$dbName = "shoppingList";
 			if ($openShiftVar === null || $openShiftVar == "")
 			{
-			     // Not in the openshift environment
+			     echo "Not in the openshift environment";
 			    $dbHost = "127.11.29.130";
 //   				$dbPort = "";
      			$dbUser = "bruce"; //trying to get openshift to work
@@ -25,7 +25,7 @@
 			}
 			else 
 			{
-			     // In the openshift environment 
+		    	echo "In the openshift environment";
 			    $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
 //				$dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
 				$dbUser = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
