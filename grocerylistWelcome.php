@@ -16,7 +16,7 @@
 			if ($openShiftVar === null || $openShiftVar == "")
 			{
 			     // Not in the openshift environment
-			    $dbHost = "localhost";
+			    $dbHost = "127.11.29.130";
 //   				$dbPort = "";
      			$dbUser = "bruce"; //trying to get openshift to work
 				$dbPassword = "brucepass";

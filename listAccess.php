@@ -24,7 +24,7 @@
 	
 	try 
 	{
-		$query = $_POST['user']; //These commented out parts are in place for future searching
+		$query = $_POST['user']; 
 
  		$user = "bruce";
 		$pass = "brucepass";
