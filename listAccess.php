@@ -42,11 +42,14 @@
 			{
 	   			echo "List name: " . $row2['listname'];
 				echo "<br />";
+				echo '<br>item list is next<br>'
 				foreach ($db->query("SELECT itemname FROM item WHERE listId=\"" . $row2["listId"] . "\"") as $row3)
 				{
 	   				echo " -- Item: " . $row3['itemname'];
 					echo "<br />";
 				}
+								echo '<br>item list is done<br>'
+
 			}
 		}
 
@@ -59,7 +62,7 @@
 
 	echo "
 	<div>
-	<a href=\"http://localhost/cs313testing/grocerylistWelcome.php\">Back to login page</a>
+	<a href=\"http://php-bniendorf.rhcloud.com/grocerylistWelcome.php\">Back to login page</a>
 	</div>
 	";
 
