@@ -108,7 +108,7 @@
 		echo "<div>Incorrect username or password!</div>";
 	}
 // class solution ends here
-	echo '<form class="form-horizontal" action="groceryListWelcome.php" method="post">
+	echo '<form class="form-horizontal" action="grocerylistWelcome.php" method="post">
 			<div class="form-group">
 				<label for="username" class="col-sm-2 control-label">Username:</label>
 				<div class="col-sm-10">
