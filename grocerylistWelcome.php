@@ -103,6 +103,7 @@
 		}
 
 	}
+
 	if ($badLogin)
 	{
 		echo "<div>Incorrect username or password!</div>";
@@ -130,7 +131,6 @@
 
 		echo '</div> <br>';
 		echo '<a href="signup.php">Create a new user</a>';
-
 	?>
 </body>
 </html>

@@ -18,10 +18,11 @@ $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 	$dbName = "shoppingList";
 	if ($openShiftVar === null || $openShiftVar == "")
 	{
-	     echo "Not in the openshift environment";
+     echo "Not in the openshift environment";
 	    $dbHost = "127.11.29.130";
 		$dbUser = "bruce"; //trying to get openshift to work
 		$dbPassword = "brucepass";
+		
 	}
 	else 
 	{
