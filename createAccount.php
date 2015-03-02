@@ -14,8 +14,22 @@ $username = htmlspecialchars($username);
 // Get the hashed password.
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-$user = 'bruce';
-$pass = 'brucepass';
+	$openShiftVar = getenv('OPENSHIFT_MYSQL_DB_HOST');
+	$dbName = "shoppingList";
+	if ($openShiftVar === null || $openShiftVar == "")
+	{
+	     echo "Not in the openshift environment";
+	    $dbHost = "127.11.29.130";
+		$dbUser = "bruce"; //trying to get openshift to work
+		$dbPassword = "brucepass";
+	}
+	else 
+	{
+    	echo "In the openshift environment <br>";
+	    $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
+		$dbUser = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
+		$dbPassword = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+	}
 
 try
 {
